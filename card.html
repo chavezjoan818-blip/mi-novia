@@ -1,0 +1,1791 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dedicatoria de Novios ❤️ Lourdes & Joan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Dancing+Script:wght@500;600;700&family=Montserrat:wght@300;400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Dancing Script', cursive;
+      overflow-x: hidden;
+      transition: background 1s ease;
+      padding: 24px 16px 40px;
+      position: relative;
+    }
+
+    body.novia {
+      background: radial-gradient(ellipse at top, #270a4b 0%, #150529 45%, #231200 100%);
+    }
+    body.novio {
+      background: radial-gradient(ellipse at top, #0f1118 0%, #07090f 50%, #020306 100%);
+    }
+
+    #particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Elementos flotantes de fondo */
+    .bg-float {
+      position: fixed;
+      pointer-events: none;
+      z-index: 0;
+      animation: float-up linear infinite;
+    }
+
+    @keyframes float-up {
+      0%   { transform: translateY(105vh) rotate(0deg); opacity: 0; }
+      8%   { opacity: 0.22; }
+      92%  { opacity: 0.12; }
+      100% { transform: translateY(-10vh) rotate(320deg); opacity: 0; }
+    }
+
+    /* ══════════════════════════════════════════
+       SECCIÓN DE APERTURA DE SOBRE 💌
+    ══════════════════════════════════════════ */
+    .envelope-stage {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      background: radial-gradient(circle at center, rgba(38,10,70,0.96) 0%, rgba(12,4,24,0.98) 100%);
+      backdrop-filter: blur(14px);
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+      padding: 20px;
+    }
+
+    .envelope-stage.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .envelope-wrapper {
+      position: relative;
+      width: min(390px, 92vw);
+      height: 255px;
+      cursor: pointer;
+      perspective: 1200px;
+      transition: transform 0.4s ease;
+    }
+
+    .envelope-wrapper:hover {
+      transform: translateY(-5px) scale(1.02);
+    }
+
+    /* Caja base del sobre */
+    .envelope {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(145deg, #3b0764 0%, #1e0a3c 50%, #2e0854 100%);
+      border-radius: 14px;
+      box-shadow: 0 25px 65px rgba(0,0,0,0.85), 0 0 40px rgba(168,85,247,0.3);
+      border: 1px solid rgba(251,191,36,0.35);
+      overflow: visible;
+    }
+
+    /* Interior del sobre */
+    .envelope-interior {
+      position: absolute;
+      inset: 0;
+      border-radius: 14px;
+      background: linear-gradient(180deg, #18052e 0%, #2e1065 100%);
+      overflow: hidden;
+    }
+
+    .envelope-interior::after {
+      content: '💜 🌻 ✨ NOVIOS • 09/09 ✨ 🌻 💜';
+      position: absolute;
+      top: 18px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 0.95rem;
+      font-family: 'Montserrat', sans-serif;
+      letter-spacing: 4px;
+      color: rgba(251,191,36,0.35);
+    }
+
+    /* Solapa superior (Flap) con rotación 3D */
+    .envelope-flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 138px;
+      background: linear-gradient(170deg, #581c87 0%, #3b0764 100%);
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      transform-origin: top center;
+      transition: transform 0.85s cubic-bezier(0.4, 0, 0.2, 1), z-index 0.3s ease;
+      z-index: 5;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+      border-top: 1px solid rgba(251,191,36,0.4);
+    }
+
+    .envelope-flap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      border-bottom: 2px solid rgba(251,191,36,0.5);
+      pointer-events: none;
+    }
+
+    /* Solapas del bolsillo */
+    .envelope-pocket {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .pocket-left {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #4c1d95 0%, #2e1065 100%);
+      clip-path: polygon(0 0, 0 100%, 52% 52%);
+      opacity: 0.95;
+    }
+
+    .pocket-right {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(225deg, #431407 0%, #2e1065 100%);
+      clip-path: polygon(100% 0, 100% 100%, 48% 52%);
+      opacity: 0.95;
+    }
+
+    .pocket-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(0deg, #240b44 0%, #3b0764 70%);
+      clip-path: polygon(0 100%, 100% 100%, 50% 48%);
+      box-shadow: 0 -4px 14px rgba(0,0,0,0.3);
+      border-bottom-left-radius: 14px;
+      border-bottom-right-radius: 14px;
+    }
+
+    /* Tarjeta asomando dentro del sobre */
+    .envelope-letter-preview {
+      position: absolute;
+      bottom: 12px;
+      left: 5%;
+      width: 90%;
+      height: 90%;
+      background: linear-gradient(175deg, #1e0a3c 0%, #2e1065 100%);
+      border-radius: 14px;
+      border: 1px solid rgba(251,191,36,0.4);
+      box-shadow: 0 -6px 20px rgba(0,0,0,0.5);
+      z-index: 2;
+      transition: transform 0.9s cubic-bezier(0.34, 1.4, 0.64, 1), opacity 0.5s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px 12px;
+      color: #fff;
+    }
+
+    .preview-header {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 2.5px;
+      color: #c084fc;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .preview-names {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      color: #fbbf24;
+      margin-top: 4px;
+      text-shadow: 0 0 10px rgba(251,191,36,0.6);
+    }
+
+    .preview-deco {
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.25rem;
+    }
+
+    /* Sello de cera */
+    .wax-seal {
+      position: absolute;
+      top: 138px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 68px;
+      height: 68px;
+      background: radial-gradient(circle at 35% 35%, #fde047 0%, #d97706 55%, #78350f 100%);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      box-shadow: 0 6px 22px rgba(0,0,0,0.7), inset 0 2px 5px rgba(255,255,255,0.7), 0 0 20px rgba(251,191,36,0.6);
+      border: 2px solid rgba(254,240,138,0.8);
+      transition: transform 0.3s ease, opacity 0.4s ease, box-shadow 0.3s ease;
+      animation: seal-pulse 2.2s ease-in-out infinite;
+    }
+
+    .wax-seal-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      line-height: 1;
+    }
+
+    .wax-seal svg {
+      width: 17px;
+      height: 17px;
+      fill: #fff;
+      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.6));
+    }
+
+    .wax-seal .seal-flower {
+      font-size: 1.25rem;
+      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.6));
+    }
+
+    .wax-seal-sub {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.44rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: #fff;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+      margin-top: 1px;
+    }
+
+    @keyframes seal-pulse {
+      0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        box-shadow: 0 6px 22px rgba(0,0,0,0.7), 0 0 16px rgba(251,191,36,0.5);
+      }
+      50% {
+        transform: translate(-50%, -50%) scale(1.08);
+        box-shadow: 0 8px 28px rgba(0,0,0,0.85), 0 0 26px rgba(251,191,36,0.9);
+      }
+    }
+
+    /* Texto de instrucción */
+    .envelope-prompt {
+      margin-top: 42px;
+      text-align: center;
+    }
+
+    .prompt-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-style: italic;
+      color: #fef08a;
+      letter-spacing: 1px;
+      text-shadow: 0 0 14px rgba(251,191,36,0.7);
+      animation: prompt-glow 2s ease-in-out infinite;
+    }
+
+    .prompt-sub {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      color: rgba(216,180,254,0.9);
+      margin-top: 8px;
+    }
+
+    @keyframes prompt-glow {
+      0%, 100% { opacity: 0.88; transform: translateY(0); }
+      50%      { opacity: 1; transform: translateY(-3px); text-shadow: 0 0 22px rgba(251,191,36,0.95); }
+    }
+
+    /* Animación al abrir */
+    .envelope-wrapper.opening .wax-seal {
+      animation: none;
+      transform: translate(-50%, -50%) scale(1.4);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .envelope-wrapper.opening .envelope-flap {
+      transform: rotateX(180deg);
+      z-index: 1;
+      transition: transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .envelope-wrapper.opening .envelope-letter-preview {
+      transform: translateY(-165px) scale(1.04);
+      z-index: 8;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.75), 0 0 35px rgba(168,85,247,0.55);
+      transition-delay: 0.35s;
+    }
+
+    .open-burst {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(251,191,36,0.85) 0%, rgba(168,85,247,0.45) 50%, transparent 80%);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 20;
+      opacity: 0;
+      transition: width 0.7s ease-out, height 0.7s ease-out, opacity 0.7s ease-out;
+    }
+
+    .envelope-wrapper.opening .open-burst {
+      width: 480px;
+      height: 480px;
+      opacity: 0.75;
+      transition-delay: 0.25s;
+    }
+
+    /* ══════════════════════════════════════════
+       CONTENIDO PRINCIPAL (POST-APERTURA)
+    ══════════════════════════════════════════ */
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      opacity: 0;
+      transform: scale(0.92) translateY(20px);
+      transition: opacity 0.9s cubic-bezier(0.34, 1.3, 0.64, 1), transform 0.9s cubic-bezier(0.34, 1.3, 0.64, 1);
+    }
+
+    .main-content.revealed {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+
+    /* ── Selector de cartas: De la Novia / Del Novio ── */
+    .toggle-wrapper {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 24px;
+      z-index: 10;
+      position: relative;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 50px;
+      padding: 6px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+    }
+
+    .toggle-btn {
+      padding: 12px 24px;
+      border-radius: 50px;
+      border: none;
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.15rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.45s cubic-bezier(0.34,1.56,0.64,1);
+      background: transparent;
+      color: rgba(255,255,255,0.5);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toggle-btn.active-novia {
+      background: linear-gradient(135deg, #7c3aed 0%, #b45309 100%);
+      color: #fff;
+      box-shadow: 0 6px 24px rgba(124,58,237,0.55), 0 0 15px rgba(251,191,36,0.3);
+      transform: scale(1.05);
+    }
+
+    .toggle-btn.active-novio {
+      background: linear-gradient(135deg, #1e293b 0%, #292524 100%);
+      color: #fef08a;
+      box-shadow: 0 6px 22px rgba(0,0,0,0.7), 0 0 16px rgba(251,191,36,0.25);
+      border: 1px solid rgba(251,191,36,0.4);
+      transform: scale(1.05);
+    }
+
+    /* ── Carta ── */
+    .scene { perspective: 1400px; z-index: 1; }
+
+    .card {
+      width: min(440px, 96vw);
+      position: relative;
+    }
+
+    .card-face {
+      display: none;
+      width: 100%;
+      border-radius: 26px;
+      overflow: hidden;
+      flex-direction: column;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.75), 0 0 0 1px rgba(255,255,255,0.12);
+    }
+
+    .card-face.visible {
+      display: flex;
+      animation: face-in 0.6s cubic-bezier(0.34,1.56,0.64,1) both;
+    }
+
+    @keyframes face-in {
+      from { opacity: 0; transform: scale(0.94) translateY(14px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    /* ══════════════════════════════════════════
+       CARTA DE LA NOVIA (LOURDES PARA JOAN)
+       Estilo BTS 💜 & Girasoles 🌻
+    ══════════════════════════════════════════ */
+    .face-novia {
+      background: linear-gradient(175deg, #1d0739 0%, #290d4f 35%, #2a1600 75%, #18032e 100%);
+      border: 1px solid rgba(251,191,36,0.35);
+      position: relative;
+    }
+
+    /* Banda superior */
+    .novia-ribbon {
+      width: 100%;
+      background: linear-gradient(90deg, #581c87, #b45309, #7c3aed, #92400e, #581c87);
+      background-size: 250% 100%;
+      animation: ribbon-slide 6s linear infinite;
+      padding: 7px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .ribbon-tag {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #fef08a;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    @keyframes ribbon-slide {
+      0%   { background-position: 0% 50%; }
+      100% { background-position: 250% 50%; }
+    }
+
+    /* Emblema BTS & Girasol */
+    .bts-emblem-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 14px;
+      padding: 5px 16px;
+      background: rgba(124,58,237,0.22);
+      border: 1px solid rgba(251,191,36,0.35);
+      border-radius: 50px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2), 0 0 15px rgba(124,58,237,0.25);
+    }
+
+    .bts-logo-svg {
+      width: 19px;
+      height: 19px;
+      fill: #fcd34d;
+      filter: drop-shadow(0 0 6px rgba(251,191,36,0.7));
+    }
+
+    .bts-motto {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #e9d5ff;
+      text-transform: uppercase;
+    }
+
+    .bts-motto span { color: #fde047; }
+
+    /* Cabecera */
+    .card-header-box {
+      padding: 24px 34px 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      position: relative;
+    }
+
+    .card-header-box::before {
+      content: '';
+      position: absolute;
+      inset: -40%;
+      background: conic-gradient(from 0deg,
+        transparent 0%, rgba(167,139,250,0.12) 20%,
+        transparent 40%, rgba(251,191,36,0.09) 60%,
+        transparent 80%);
+      animation: spin 14s linear infinite;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .role-badge {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      padding: 3px 12px;
+      border-radius: 20px;
+      margin-bottom: 4px;
+      z-index: 1;
+    }
+
+    .role-badge-novia {
+      background: rgba(251,191,36,0.2);
+      border: 1px solid rgba(251,191,36,0.5);
+      color: #fef08a;
+    }
+
+    .role-badge-novio {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(251,191,36,0.35);
+      color: #fde047;
+    }
+
+    .header-para {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.25rem;
+      color: rgba(216,180,254,0.9);
+      letter-spacing: 0.05em;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-nombre {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 2.15rem;
+      font-weight: 700;
+      color: #fff;
+      text-align: center;
+      line-height: 1.15;
+      position: relative;
+      z-index: 1;
+      text-shadow: 0 0 35px rgba(167,139,250,0.7), 0 0 60px rgba(251,191,36,0.3);
+    }
+
+    .header-apellido {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      color: rgba(252,211,77,0.88);
+      letter-spacing: 0.14em;
+      position: relative;
+      z-index: 1;
+      text-shadow: 0 0 10px rgba(251,191,36,0.4);
+    }
+
+    .deco-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.45rem;
+      position: relative;
+      z-index: 1;
+      margin: 6px 0 2px;
+    }
+
+    .deco-row span { display: inline-block; animation: sway 2.8s ease-in-out infinite; }
+    .deco-row span:nth-child(2) { animation-delay: .3s; font-size: 1.25rem; }
+    .deco-row span:nth-child(3) { animation-delay: .6s; }
+    .deco-row span:nth-child(4) { animation-delay: .9s; font-size: 1.25rem; }
+    .deco-row span:nth-child(5) { animation-delay: 1.2s; }
+
+    @keyframes sway {
+      0%, 100% { transform: rotate(-8deg) scale(1); }
+      50%      { transform: rotate(8deg) scale(1.15); }
+    }
+
+    /* ══════════════════════════════════════════
+       REPRODUCTOR DE MÚSICA (COMÚN Y TEMATIZADO)
+    ══════════════════════════════════════════ */
+    .bts-player-widget {
+      width: calc(100% - 68px);
+      margin: 0 34px 14px;
+      padding: 14px 16px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(192,132,252,0.35);
+      border-radius: 20px;
+      backdrop-filter: blur(14px);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.35), 0 0 20px rgba(124,58,237,0.25);
+      position: relative;
+      z-index: 2;
+    }
+
+    .novio-player-widget {
+      background: rgba(17,21,30,0.7);
+      border: 1px solid rgba(251,191,36,0.3);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.6), 0 0 20px rgba(251,191,36,0.15);
+    }
+
+    .player-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Vinilo giratorio con estilo */
+    .vinyl-disc {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #2e1065 20%, #000 21%, #1e0a3c 45%, #000 46%, #3b0764 70%, #000 71%);
+      border: 2px solid rgba(251,191,36,0.6);
+      box-shadow: 0 0 12px rgba(168,85,247,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
+
+    .vinyl-disc-novio {
+      background: radial-gradient(circle, #1a1e28 20%, #000 21%, #12151e 45%, #000 46%, #28241c 70%, #000 71%);
+      border: 2px solid rgba(251,191,36,0.7);
+      box-shadow: 0 0 14px rgba(251,191,36,0.25);
+    }
+
+    .vinyl-disc.playing {
+      animation: spin 3s linear infinite;
+    }
+
+    .vinyl-center {
+      font-size: 1.15rem;
+    }
+
+    .player-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .player-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: #fde047;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .player-artist {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.68rem;
+      color: #d8b4fe;
+      letter-spacing: 0.5px;
+      margin-top: 1px;
+    }
+
+    .player-quote {
+      font-family: 'Dancing Script', cursive;
+      font-size: 0.95rem;
+      color: rgba(233,213,255,0.9);
+      margin-top: 2px;
+    }
+
+    .player-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .play-toggle-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7c3aed, #d97706);
+      border: none;
+      color: #fff;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(124,58,237,0.5);
+      transition: all 0.25s ease;
+    }
+
+    .play-toggle-novio {
+      background: linear-gradient(135deg, #334155, #b45309);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.5);
+      border: 1px solid rgba(251,191,36,0.4);
+    }
+
+    .play-toggle-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(251,191,36,0.6);
+    }
+
+    /* Ecualizador animado */
+    .equalizer-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 3px;
+      height: 18px;
+      padding: 0 2px;
+    }
+
+    .eq-bar {
+      width: 3px;
+      height: 4px;
+      background: linear-gradient(to top, #7c3aed, #fbbf24);
+      border-radius: 2px;
+      transition: height 0.2s ease;
+    }
+
+    .eq-bar-novio {
+      background: linear-gradient(to top, #64748b, #fbbf24);
+    }
+
+    .equalizer-bars.active .eq-bar:nth-child(1) { animation: bounce-bar 0.7s ease-in-out infinite alternate; }
+    .equalizer-bars.active .eq-bar:nth-child(2) { animation: bounce-bar 0.9s ease-in-out infinite alternate 0.2s; }
+    .equalizer-bars.active .eq-bar:nth-child(3) { animation: bounce-bar 0.6s ease-in-out infinite alternate 0.4s; }
+    .equalizer-bars.active .eq-bar:nth-child(4) { animation: bounce-bar 0.8s ease-in-out infinite alternate 0.1s; }
+    .equalizer-bars.active .eq-bar:nth-child(5) { animation: bounce-bar 1.0s ease-in-out infinite alternate 0.3s; }
+
+    @keyframes bounce-bar {
+      0%   { height: 4px; }
+      100% { height: 18px; }
+    }
+
+    /* Barra de progreso de música */
+    .player-progress-container {
+      width: 100%;
+      cursor: pointer;
+      padding: 4px 0;
+    }
+
+    .player-progress-bar {
+      width: 100%;
+      height: 5px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    #audioProgressBar {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #c084fc, #fbbf24);
+      border-radius: 4px;
+      transition: width 0.12s linear;
+    }
+
+    #novioProgressBar {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #94a3b8, #fbbf24);
+      border-radius: 4px;
+      transition: width 0.12s linear;
+    }
+
+    .player-time-row {
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem;
+      color: #d8b4fe;
+      margin-top: 4px;
+    }
+
+    /* Botón flotante para la música */
+    .floating-music-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6d28d9, #b45309);
+      border: 2px solid rgba(251,191,36,0.7);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.6), 0 0 15px rgba(124,58,237,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 90;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      color: #fff;
+      font-size: 1.35rem;
+    }
+
+    .floating-music-btn:hover {
+      transform: scale(1.1) translateY(-2px);
+      box-shadow: 0 8px 25px rgba(251,191,36,0.8);
+    }
+
+    .floating-music-btn.playing {
+      animation: spin 4s linear infinite;
+      border-color: #fde047;
+    }
+
+    /* Líneas ornamentales */
+    .ornament-line {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 34px;
+      margin: 4px 0 8px;
+    }
+
+    .ornament-line::before,
+    .ornament-line::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+    }
+
+    .novia-ornament::before,
+    .novia-ornament::after {
+      background: linear-gradient(90deg, transparent, #a855f7, #fbbf24, transparent);
+    }
+
+    .novio-ornament::before,
+    .novio-ornament::after {
+      background: linear-gradient(90deg, transparent, #94a3b8, #fbbf24, transparent);
+    }
+
+    .ornament-line span {
+      font-size: 1.15rem;
+      animation: heartbeat 1.6s ease-in-out infinite;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      15%      { transform: scale(1.35); }
+      30%      { transform: scale(1); }
+      45%      { transform: scale(1.18); }
+    }
+
+    /* Cuerpo carta */
+    .card-body-box {
+      padding: 4px 34px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      position: relative;
+    }
+
+    .drop-cap {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.8rem;
+      font-style: italic;
+      color: rgba(192,132,252,0.4);
+      line-height: 0.6;
+      float: left;
+      margin: 8px 4px 0 0;
+    }
+
+    .section-label {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.15rem;
+      color: #fde047;
+      text-align: center;
+      letter-spacing: 0.04em;
+      text-shadow: 0 0 10px rgba(251,191,36,0.3);
+    }
+
+    .novio-section-label {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.15rem;
+      color: #fde047;
+      text-align: center;
+      text-shadow: 0 0 10px rgba(251,191,36,0.3);
+    }
+
+    .card-letter-text {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.08rem;
+      line-height: 1.95;
+      color: rgba(255,255,255,0.92);
+      text-align: justify;
+      max-height: 330px;
+      overflow-y: auto;
+      padding-right: 8px;
+    }
+
+    .card-letter-text::-webkit-scrollbar { width: 4px; }
+    .card-letter-text::-webkit-scrollbar-track { background: rgba(255,255,255,0.06); border-radius: 4px; }
+    .card-letter-text::-webkit-scrollbar-thumb { background: linear-gradient(#fbbf24, #94a3b8); border-radius: 4px; }
+
+    .card-letter-text p { margin-bottom: 12px; }
+    .card-letter-text p:last-child { margin-bottom: 0; }
+
+    .hl-g  { color: #fde047; font-weight: 700; text-shadow: 0 0 6px rgba(251,191,36,0.3); }
+    .hl-p  { color: #d8b4fe; font-weight: 700; text-shadow: 0 0 6px rgba(168,85,247,0.3); }
+    .hl-n  { color: #fbbf24; font-style: italic; font-weight: 700; }
+    .hl-y  { color: #fde047; font-weight: 700; }
+    .hl-gr { color: #fcd34d; font-weight: 700; }
+
+    /* Bloque Borahae / Dedicatoria */
+    .borahae-box {
+      margin-top: 10px;
+      padding: 10px 14px;
+      background: rgba(124,58,237,0.18);
+      border: 1px dashed rgba(251,191,36,0.45);
+      border-radius: 14px;
+      text-align: center;
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.05rem;
+      color: #fef08a;
+    }
+
+    .borahae-box span {
+      color: #d8b4fe;
+      font-weight: 700;
+    }
+
+    /* Firma */
+    .card-firma-box {
+      text-align: right;
+      padding: 0 34px 26px;
+    }
+
+    .card-firma-box .firma-texto {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: rgba(216,180,254,0.75);
+    }
+
+    .card-firma-box .firma-nombre {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: #fbbf24;
+      filter: drop-shadow(0 0 8px rgba(251,191,36,0.45));
+      margin-top: 2px;
+    }
+
+    /* ══════════════════════════════════════════
+       CARTA DEL NOVIO (JOAN PARA LOURDES)
+       Estilo Oscuro, Elegante & Dorado 🖤✨
+    ══════════════════════════════════════════ */
+    .face-novio {
+      background: linear-gradient(175deg, #0b0d13 0%, #131722 40%, #08090d 100%);
+      border: 1px solid rgba(251,191,36,0.3);
+    }
+
+    .novio-ribbon {
+      width: 100%;
+      background: linear-gradient(90deg, #131722, #2d2616, #1b202e, #2a2315, #131722);
+      background-size: 200% 100%;
+      animation: ribbon-slide 7s linear infinite;
+      padding: 7px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Contador días de novios */
+    .dias-juntos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 14px 20px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(251,191,36,0.25);
+      border-radius: 16px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+
+    .dias-emoji { font-size: 1.6rem; animation: heartbeat 1.4s ease-in-out infinite; }
+
+    .dias-info { text-align: center; }
+    .dias-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.1rem;
+      font-weight: 700;
+      color: #fde047;
+      line-height: 1;
+      filter: drop-shadow(0 0 8px rgba(253,224,71,0.5));
+    }
+    .dias-label {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1rem;
+      color: #fef08a;
+      margin-top: 2px;
+      font-weight: 600;
+    }
+
+    /* Botón para volver al sobre */
+    .reopen-envelope-btn {
+      margin-top: 22px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(251,191,36,0.35);
+      color: rgba(255,255,255,0.8);
+      padding: 9px 22px;
+      border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .reopen-envelope-btn:hover {
+      background: rgba(251,191,36,0.18);
+      color: #fef08a;
+      border-color: rgba(251,191,36,0.7);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body class="novia">
+  <canvas id="particles"></canvas>
+
+  <!-- Pistas de audio locales colocadas en la carpeta -->
+  <!-- 1. Música de la Novia -->
+  <audio id="noviaAudio" loop preload="auto">
+    <source src="musica de la novia.mp3" type="audio/mpeg">
+    <source src="musica%20de%20la%20novia.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- 2. Canción del Novio -->
+  <audio id="novioAudio" loop preload="auto">
+    <source src="cancion del novio.mp3" type="audio/mpeg">
+    <source src="cancion%20del%20novio.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Elementos flotantes de la Novia (BTS + Girasoles) -->
+  <div class="bg-float novia-float" style="left:4%;font-size:1.8rem;animation-duration:13s;animation-delay:0s">🌻</div>
+  <div class="bg-float novia-float" style="left:12%;font-size:1.1rem;animation-duration:10s;animation-delay:2s">💜</div>
+  <div class="bg-float novia-float" style="left:22%;font-size:1.4rem;animation-duration:14s;animation-delay:5s">✨</div>
+  <div class="bg-float novia-float" style="left:33%;font-size:1.6rem;animation-duration:12s;animation-delay:1s">🌻</div>
+  <div class="bg-float novia-float" style="left:45%;font-size:1rem;animation-duration:11s;animation-delay:4s">보라해</div>
+  <div class="bg-float novia-float" style="left:58%;font-size:1.8rem;animation-duration:13s;animation-delay:7s">🌻</div>
+  <div class="bg-float novia-float" style="left:70%;font-size:1.1rem;animation-duration:9s;animation-delay:3s">💜</div>
+  <div class="bg-float novia-float" style="left:82%;font-size:1.5rem;animation-duration:15s;animation-delay:6s">✨</div>
+  <div class="bg-float novia-float" style="left:92%;font-size:1.7rem;animation-duration:12s;animation-delay:2s">🌻</div>
+
+  <!-- Elementos flotantes del Novio (Estilo Oscuro, Elegante y Estrellas) -->
+  <div class="bg-float novio-float" style="left:6%;font-size:1.4rem;animation-duration:10s;animation-delay:0s;display:none">✨</div>
+  <div class="bg-float novio-float" style="left:18%;font-size:1.2rem;animation-duration:12s;animation-delay:2s;display:none">🖤</div>
+  <div class="bg-float novio-float" style="left:35%;font-size:1.5rem;animation-duration:9s;animation-delay:1s;display:none">🌙</div>
+  <div class="bg-float novio-float" style="left:54%;font-size:1.1rem;animation-duration:11s;animation-delay:4s;display:none">⭐</div>
+  <div class="bg-float novio-float" style="left:72%;font-size:1.3rem;animation-duration:13s;animation-delay:3s;display:none">💫</div>
+  <div class="bg-float novio-float" style="left:88%;font-size:1.4rem;animation-duration:10s;animation-delay:6s;display:none">🖤</div>
+
+  <!-- Botón flotante para pausar/reanudar música en cualquier momento -->
+  <button class="floating-music-btn" id="floatingMusicBtn" onclick="toggleCurrentMusic()" title="Pausar o reproducir música">
+    🎵
+  </button>
+
+  <!-- ══════════════════════════════════════════
+       PANTALLA DE APERTURA DE SOBRE 💌
+  ══════════════════════════════════════════ -->
+  <div class="envelope-stage" id="envelopeStage">
+    <div class="envelope-wrapper" id="envelopeWrapper" onclick="openEnvelope()">
+      
+      <div class="envelope" id="envelope">
+        <!-- Destello al abrir -->
+        <div class="open-burst"></div>
+
+        <!-- Interior del sobre -->
+        <div class="envelope-interior"></div>
+
+        <!-- Carta asomándose -->
+        <div class="envelope-letter-preview">
+          <div class="preview-header">DEDICATORIA DE NOVIOS ❤️</div>
+          <div class="preview-names">Lourdes &amp; Joan</div>
+          <div class="preview-deco">
+            <span>🌻</span>
+            <svg style="width:16px;height:16px;fill:#c084fc;" viewBox="0 0 100 100">
+              <polygon points="12,12 45,20 45,80 12,88" />
+              <polygon points="55,20 88,12 88,88 55,80" />
+            </svg>
+            <span>💜</span>
+            <span>🖤</span>
+            <span>✨</span>
+          </div>
+        </div>
+
+        <!-- Solapa 3D -->
+        <div class="envelope-flap" id="envelopeFlap"></div>
+
+        <!-- Bolsillo del sobre -->
+        <div class="envelope-pocket">
+          <div class="pocket-left"></div>
+          <div class="pocket-right"></div>
+          <div class="pocket-bottom"></div>
+        </div>
+
+        <!-- Sello de cera -->
+        <div class="wax-seal" id="waxSeal" title="Toca para abrir">
+          <div class="wax-seal-icon">
+            <svg viewBox="0 0 100 100">
+              <polygon points="12,12 45,20 45,80 12,88" />
+              <polygon points="55,20 88,12 88,88 55,80" />
+            </svg>
+            <span class="seal-flower">🌻</span>
+          </div>
+          <div class="wax-seal-sub">NOVIOS • 09/09</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="envelope-prompt" onclick="openEnvelope()" style="cursor:pointer;">
+      <p class="prompt-text">✨ Toca el sobre para abrir la dedicatoria ✨</p>
+      <p class="prompt-sub">Nuestra historia de amor • Novios desde el 9 de septiembre 💜</p>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       CONTENIDO PRINCIPAL (CARTA + SELECTOR)
+  ══════════════════════════════════════════ -->
+  <div class="main-content" id="mainContent">
+
+    <!-- Selector de cartas: DE LA NOVIA / DEL NOVIO -->
+    <div class="toggle-wrapper">
+      <button class="toggle-btn active-novia" id="btnNovia" onclick="showFace('novia')">
+        <span>🌻</span> De la Novia <span>💜</span>
+      </button>
+      <button class="toggle-btn" id="btnNovio" onclick="showFace('novio')">
+        <span>🖤</span> Del Novio <span>✨</span>
+      </button>
+    </div>
+
+    <!-- Carta -->
+    <div class="scene">
+      <div class="card" id="card">
+
+        <!-- ══════════════════════════════════════════
+             1. CARTA DE LA NOVIA:
+             Lourdes escribe para su Novio Joan
+        ══════════════════════════════════════════ -->
+        <div class="card-face face-novia visible" id="faceNovia">
+
+          <!-- Banda superior BTS x Girasoles -->
+          <div class="novia-ribbon">
+            <span class="ribbon-tag">
+              <span>💜</span> CARTA DE LA NOVIA • BORAHAE <span>🌻</span>
+            </span>
+          </div>
+
+          <!-- Cabecera: Para su novio Joan -->
+          <div class="card-header-box">
+            
+            <!-- Emblema BTS & Girasoles -->
+            <div class="bts-emblem-badge">
+              <svg class="bts-logo-svg" viewBox="0 0 100 100">
+                <polygon points="12,12 45,20 45,80 12,88" />
+                <polygon points="55,20 88,12 88,88 55,80" />
+              </svg>
+              <div class="bts-motto">I PURPLE YOU • <span>보라해</span></div>
+              <span style="font-size:0.95rem;">🌻</span>
+            </div>
+
+            <div class="role-badge role-badge-novia" style="margin-top:8px;">
+              💌 De la Novia: Lourdes Martínez Sánchez
+            </div>
+
+            <p class="header-para">Para mi amado novio,</p>
+            <h1 class="header-nombre">Joan Joaquín Tomás</h1>
+            <p class="header-apellido">C H Á V E Z &nbsp; Q U I S P E</p>
+
+            <div class="deco-row">
+              <span>🌻</span>
+              <span>💜</span>
+              <span>🌻</span>
+              <span>💜</span>
+              <span>🌻</span>
+            </div>
+          </div>
+
+          <!-- ══════════════════════════════════════
+               REPRODUCTOR DE MÚSICA DE LA NOVIA 🎶
+          ══════════════════════════════════════════ -->
+          <div class="bts-player-widget">
+            <div class="player-header">
+              <!-- Vinilo animado -->
+              <div class="vinyl-disc" id="vinylDiscNovia">
+                <div class="vinyl-center">🌻</div>
+              </div>
+
+              <!-- Info de la canción -->
+              <div class="player-info">
+                <div class="player-title">
+                  <span>🎧</span> Música de la Novia 💜
+                </div>
+                <div class="player-artist">musica de la novia.mp3 • BTS</div>
+                <div class="player-quote">"You are the cause of my euphoria..." ✨</div>
+              </div>
+
+              <!-- Controles y ecualizador -->
+              <div class="player-controls">
+                <div class="equalizer-bars" id="eqBarsNovia">
+                  <span class="eq-bar"></span>
+                  <span class="eq-bar"></span>
+                  <span class="eq-bar"></span>
+                  <span class="eq-bar"></span>
+                  <span class="eq-bar"></span>
+                </div>
+                <button class="play-toggle-btn" id="playBtnNovia" onclick="toggleCurrentMusic()" title="Reproducir / Pausar">
+                  <span id="playBtnIconNovia">▶</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Barra de progreso interactiva -->
+            <div class="player-progress-container" onclick="seekAudioNovia(event)" title="Haz clic para avanzar o retroceder">
+              <div class="player-progress-bar">
+                <div id="audioProgressBar"></div>
+              </div>
+              <div class="player-time-row">
+                <span id="currentTimeDisplay">00:00</span>
+                <span id="durationDisplay">--:--</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Línea ornamental -->
+          <div class="ornament-line novia-ornament">
+            <span>💜</span>
+          </div>
+
+          <!-- Cuerpo de la carta escrita por Lourdes -->
+          <div class="card-body-box">
+            <p class="section-label">~ Yo antes de conocerte ~</p>
+
+            <div class="card-letter-text">
+              <p><span class="drop-cap">"</span>Antes de ti, solía ser una chica muy insegura de sí misma, alguien que solía pasar sus días triste, encerrada en lo que según yo era mi <span class="hl-g">lugar seguro</span>... mi cueva. El hecho de haberme quedado sola, después de dos compañeras, me afectó mucho por un tiempo. Eso hizo que me cerrara a nuevas amistades, pues tenía miedo al abandono... más aún establecer una relación, eso me aterraba.</p>
+
+              <p><span class="hl-p">"Tú"</span> llegaste a mi vida como un <span class="hl-g">rayito de sol de todas las mañanas 🌻</span> El ir conociéndote, el cómo pusiste tu confianza en mí, me hizo entender que podía confiar nuevamente en las personas. Pero <span class="hl-p">tú</span> te ganaste mi confianza y admiración.</p>
+
+              <p>Los días contando con tu amistad se hicieron más llevaderos y poco a poco mis días se hicieron más felices, pues tenía tu amistad y alguien con quien compartir mis tristezas y felicidades. 💜</p>
+
+              <p>Nunca estuvo en mis planes tener una relación, no solo por mi experiencia pasada. Siempre he pensado que el formar una familia era una gran responsabilidad para la cual no me sentía preparada. Fue la causa de mis intentos de huir... pero tus atenciones, tus muestras de cariño, la forma en la que me tratas, hizo que mis sentimientos hacia ti fueran cambiando poco a poco.</p>
+
+              <p>El miedo aún existía, pero gracias a tus esfuerzos y a que confiara más en mí, esos miedos se fueron desvaneciendo y pude aceptar mis sentimientos por ti. 🌻</p>
+
+              <p>Ahora puedo decir que <span class="hl-g">te amo, te amo demasiado</span>, <span class="hl-n">Joan Joaquín Tomás Chávez Quispe</span>. Desde el <span class="hl-g">9 de septiembre</span> tienes mi corazón en tus manos y soy la novia más feliz. 💜</p>
+
+              <p>El miedo de que esta relación no funcione sigue en mi mente, pero sé que contigo a mi lado podremos superar todos los tiempos difíciles. Confío plenamente en que los dos nos esforzaremos día a día para tener un bonito futuro juntos.</p>
+
+              <p>El hecho de imaginar un futuro contigo me llena de <span class="hl-g">emoción y felicidad</span>. Espero de todo corazón que nuestra historia pueda continuar... 🌻💜🌻</p>
+
+              <!-- Mención romántica BTS & Girasoles -->
+              <div class="borahae-box">
+                "Como dijo Taehyung: el morado es el último color del arcoíris... significa que confiaré en ti y te amaré por mucho tiempo. <span>보라해 (Borahae)</span> para siempre, mi novio hermoso. 💜🌻"
+              </div>
+            </div>
+          </div>
+
+          <!-- Línea ornamental inferior -->
+          <div class="ornament-line novia-ornament" style="margin-bottom:6px;">
+            <span>🌻</span>
+          </div>
+
+          <!-- Firma de la novia -->
+          <div class="card-firma-box">
+            <p class="firma-texto">Con todo mi amor y un eterno Borahae,</p>
+            <p class="firma-nombre">Tu novia, Lourdes 🌻💜</p>
+          </div>
+
+        </div>
+
+        <!-- ══════════════════════════════════════════
+             2. CARTA DEL NOVIO:
+             Joan escribe para su Novia Lourdes
+             Estilo Oscuro, Elegante y Dorado 🖤✨
+        ══════════════════════════════════════════ -->
+        <div class="card-face face-novio" id="faceNovio">
+
+          <!-- Banda superior oscura y elegante -->
+          <div class="novio-ribbon">
+            <span class="ribbon-tag" style="color:#fef08a;">
+              <span>🖤</span> CARTA DEL NOVIO • DEDICATORIA DE AMOR <span>✨</span>
+            </span>
+          </div>
+
+          <!-- Cabecera: Para su novia Lourdes -->
+          <div class="card-header-box">
+            <div class="role-badge role-badge-novio" style="margin-top:6px;">
+              💌 Del Novio: Joan Joaquín Tomás Chávez Quispe
+            </div>
+
+            <p class="header-para" style="color:rgba(254,240,138,0.85);">Para mi hermosa novia,</p>
+            <h1 class="header-nombre" style="text-shadow: 0 0 28px rgba(250,204,21,0.5), 0 0 50px rgba(255,255,255,0.15);">Lourdes Martínez</h1>
+            <p class="header-apellido" style="color:rgba(253,224,71,0.85);">S Á N C H E Z</p>
+
+            <div class="deco-row">
+              <span>✨</span>
+              <span>🖤</span>
+              <span>🌙</span>
+              <span>🖤</span>
+              <span>✨</span>
+            </div>
+          </div>
+
+          <!-- ══════════════════════════════════════
+               REPRODUCTOR DE MÚSICA DEL NOVIO 🖤🎶
+          ══════════════════════════════════════════ -->
+          <div class="bts-player-widget novio-player-widget">
+            <div class="player-header">
+              <!-- Vinilo animado Novio -->
+              <div class="vinyl-disc vinyl-disc-novio" id="vinylDiscNovio">
+                <div class="vinyl-center">🖤</div>
+              </div>
+
+              <!-- Info de la canción del Novio -->
+              <div class="player-info">
+                <div class="player-title" style="color:#fde047;">
+                  <span>🎧</span> Canción del Novio 🖤
+                </div>
+                <div class="player-artist" style="color:#cbd5e1;">cancion del novio.mp3 • Joan</div>
+                <div class="player-quote" style="color:rgba(254,240,138,0.85);">"Tú te convertiste en mi lugar seguro..." ✨🖤</div>
+              </div>
+
+              <!-- Controles y ecualizador -->
+              <div class="player-controls">
+                <div class="equalizer-bars equalizer-novio" id="eqBarsNovio">
+                  <span class="eq-bar eq-bar-novio"></span>
+                  <span class="eq-bar eq-bar-novio"></span>
+                  <span class="eq-bar eq-bar-novio"></span>
+                  <span class="eq-bar eq-bar-novio"></span>
+                  <span class="eq-bar eq-bar-novio"></span>
+                </div>
+                <button class="play-toggle-btn play-toggle-novio" id="playBtnNovio" onclick="toggleCurrentMusic()" title="Reproducir / Pausar">
+                  <span id="playBtnIconNovio">▶</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Barra de progreso interactiva del novio -->
+            <div class="player-progress-container" onclick="seekAudioNovio(event)" title="Haz clic para avanzar o retroceder">
+              <div class="player-progress-bar">
+                <div id="novioProgressBar"></div>
+              </div>
+              <div class="player-time-row" style="color:#fde047;">
+                <span id="novioCurrentTime">00:00</span>
+                <span id="novioDuration">--:--</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Línea ornamental -->
+          <div class="ornament-line novio-ornament">
+            <span>✨</span>
+          </div>
+
+          <!-- Cuerpo de la carta escrita por Joan -->
+          <div class="card-body-box">
+            <p class="novio-section-label">~ Yo antes de conocerte ~</p>
+
+            <!-- Contador de días de novios -->
+            <div class="dias-juntos">
+              <div class="dias-emoji">💛</div>
+              <div class="dias-info">
+                <div class="dias-num" id="dayCounter">0</div>
+                <div class="dias-label">días de novios juntos desde el 9 de septiembre</div>
+              </div>
+              <div class="dias-emoji">💛</div>
+            </div>
+
+            <div class="card-letter-text">
+              <p><span class="drop-cap">"</span>Antes de ti siempre he sido un chico muy cerrado con mis cosas, mayormente por experiencias fallidas y por traumas de la infancia que poco a poco mataban mi mente y no salía de mi casa para nada. Solo estaba mi laptop y mi única norma era que si alguien se metía mucho en mi vida, pues al final terminaba alejándome...</p>
+
+              <p>Pero cuando yo te vi, decidí que tenía que cambiar todo eso de mí. Te atraje a mi vida poco a poco, y sé que al principio ambos teníamos <span class="hl-y">miedo al abandono</span>, pero tú te convertiste en mi <span class="hl-g">lugar seguro</span>: un lugar donde puedo ser yo mismo. Al principio me sentía raro, porque sentirme seguro nunca ha sido algo bueno para mí porque era muy inseguro y seguía con muchas cosas en la cabeza, pero poco a poco hiciste que todo eso desapareciera. ✨</p>
+
+              <p>Tu amistad siempre ha hecho que mi vida sea más fácil y poco a poco reafirmé mi decisión de <span class="hl-y">querer algo serio contigo y llegar al matrimonio</span>... porque tienes muy hermosas cualidades: eres empática, <span class="hl-g">amas a Jehová</span>, te esfuerzas todos los días, eres sencilla mi amor, te gusta aprender nuevas cosas, eres muy amorosa, eres una mujer que todos querrían tener. Amo que seas un tanto tímida porque sé que eres pura y sé que todo lo haces de corazón. 🤍</p>
+
+              <p>Las palabras me hacen falta para describirte lo perfecta que eres para mí. Solo quiero recordarte: <span class="hl-y">gracias, amor</span>. Gracias por ser mi mejor amiga, mi novia, <span class="hl-g">mi diseñadora de modas 🤭</span>. Eres mi mundo completo y me voy a esforzar para seguir adelante. Prometo amarte, cuidarte, respetarte y ser tu mejor amigo al lado de Jehová... 💫</p>
+
+              <div class="borahae-box" style="background:rgba(255,255,255,0.06);border:1px dashed rgba(250,204,21,0.5);color:#fef08a;">
+                "Te amo mi amor, con todo mi corazón. Siempre juntos. ❤️💜✨"
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Línea ornamental inferior -->
+          <div class="ornament-line novio-ornament" style="margin-bottom:6px;">
+            <span>🖤</span>
+          </div>
+
+          <!-- Firma del novio -->
+          <div class="card-firma-box">
+            <p class="firma-texto" style="color:rgba(254,240,138,0.75);">Con todo mi amor,</p>
+            <p class="firma-nombre" style="color:#fde047;">Tu novio, Joan 🖤✨</p>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Botón para cerrar y volver al sobre -->
+    <button class="reopen-envelope-btn" onclick="closeEnvelope()">
+      ✉️ Volver a guardar en el sobre
+    </button>
+
+  </div>
+
+  <script>
+    /* ── Estado y Control de Música Dual (Novia & Novio) ── */
+    let currentSide = 'novia';
+    let isMusicActive = false;
+
+    const noviaAudio = document.getElementById('noviaAudio');
+    const novioAudio = document.getElementById('novioAudio');
+
+    // UI Novia
+    const vinylDiscNovia   = document.getElementById('vinylDiscNovia');
+    const eqBarsNovia      = document.getElementById('eqBarsNovia');
+    const playBtnIconNovia = document.getElementById('playBtnIconNovia');
+    const progressBarNovia = document.getElementById('audioProgressBar');
+    const curTimeNovia     = document.getElementById('currentTimeDisplay');
+    const durNovia         = document.getElementById('durationDisplay');
+
+    // UI Novio
+    const vinylDiscNovio   = document.getElementById('vinylDiscNovio');
+    const eqBarsNovio      = document.getElementById('eqBarsNovio');
+    const playBtnIconNovio = document.getElementById('playBtnIconNovio');
+    const progressBarNovio = document.getElementById('novioProgressBar');
+    const curTimeNovio     = document.getElementById('novioCurrentTime');
+    const durNovio         = document.getElementById('novioDuration');
+
+    // Botón flotante
+    const floatingBtn = document.getElementById('floatingMusicBtn');
+
+    function getActiveAudio() {
+      return currentSide === 'novia' ? noviaAudio : novioAudio;
+    }
+
+    function updatePlayerUI() {
+      const activeAudio = getActiveAudio();
+      const playing = isMusicActive && activeAudio && !activeAudio.paused;
+
+      // Actualizar botón flotante
+      if (floatingBtn) {
+        if (playing) {
+          floatingBtn.classList.add('playing');
+        } else {
+          floatingBtn.classList.remove('playing');
+        }
+      }
+
+      // UI Novia
+      if (currentSide === 'novia') {
+        if (vinylDiscNovia)   vinylDiscNovia.classList.toggle('playing', playing);
+        if (eqBarsNovia)      eqBarsNovia.classList.toggle('active', playing);
+        if (playBtnIconNovia) playBtnIconNovia.textContent = playing ? '⏸' : '▶';
+
+        // Detener visuales de novio
+        if (vinylDiscNovio)   vinylDiscNovio.classList.remove('playing');
+        if (eqBarsNovio)      eqBarsNovio.classList.remove('active');
+        if (playBtnIconNovio) playBtnIconNovio.textContent = '▶';
+      } else {
+        // UI Novio
+        if (vinylDiscNovio)   vinylDiscNovio.classList.toggle('playing', playing);
+        if (eqBarsNovio)      eqBarsNovio.classList.toggle('active', playing);
+        if (playBtnIconNovio) playBtnIconNovio.textContent = playing ? '⏸' : '▶';
+
+        // Detener visuales de novia
+        if (vinylDiscNovia)   vinylDiscNovia.classList.remove('playing');
+        if (eqBarsNovia)      eqBarsNovia.classList.remove('active');
+        if (playBtnIconNovia) playBtnIconNovia.textContent = '▶';
+      }
+    }
+
+    function playCurrentMusic() {
+      isMusicActive = true;
+      if (currentSide === 'novia') {
+        if (novioAudio) novioAudio.pause();
+        if (noviaAudio) {
+          noviaAudio.play().then(() => updatePlayerUI()).catch(e => console.log('Autoplay novia:', e));
+        }
+      } else {
+        if (noviaAudio) noviaAudio.pause();
+        if (novioAudio) {
+          novioAudio.play().then(() => updatePlayerUI()).catch(e => console.log('Autoplay novio:', e));
+        }
+      }
+      updatePlayerUI();
+    }
+
+    function pauseCurrentMusic() {
+      isMusicActive = false;
+      if (noviaAudio) noviaAudio.pause();
+      if (novioAudio) novioAudio.pause();
+      updatePlayerUI();
+    }
+
+    function toggleCurrentMusic() {
+      const active = getActiveAudio();
+      if (active && !active.paused) {
+        pauseCurrentMusic();
+      } else {
+        playCurrentMusic();
+      }
+    }
+
+    function formatTime(sec) {
+      if (isNaN(sec)) return '00:00';
+      const m = Math.floor(sec / 60);
+      const s = Math.floor(sec % 60);
+      return `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+    }
+
+    function seekAudioNovia(e) {
+      if (!noviaAudio || !noviaAudio.duration) return;
+      const rect = e.currentTarget.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const pct = Math.max(0, Math.min(1, clickX / rect.width));
+      noviaAudio.currentTime = pct * noviaAudio.duration;
+    }
+
+    function seekAudioNovio(e) {
+      if (!novioAudio || !novioAudio.duration) return;
+      const rect = e.currentTarget.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const pct = Math.max(0, Math.min(1, clickX / rect.width));
+      novioAudio.currentTime = pct * novioAudio.duration;
+    }
+
+    // Eventos de audio Novia
+    if (noviaAudio) {
+      noviaAudio.addEventListener('timeupdate', () => {
+        if (noviaAudio.duration) {
+          const pct = (noviaAudio.currentTime / noviaAudio.duration) * 100;
+          if (progressBarNovia) progressBarNovia.style.width = pct + '%';
+          if (curTimeNovia) curTimeNovia.textContent = formatTime(noviaAudio.currentTime);
+          if (durNovia) durNovia.textContent = formatTime(noviaAudio.duration);
+        }
+      });
+      noviaAudio.addEventListener('loadedmetadata', () => {
+        if (durNovia && noviaAudio.duration) durNovia.textContent = formatTime(noviaAudio.duration);
+      });
+      noviaAudio.addEventListener('play',  () => updatePlayerUI());
+      noviaAudio.addEventListener('pause', () => updatePlayerUI());
+    }
+
+    // Eventos de audio Novio
+    if (novioAudio) {
+      novioAudio.addEventListener('timeupdate', () => {
+        if (novioAudio.duration) {
+          const pct = (novioAudio.currentTime / novioAudio.duration) * 100;
+          if (progressBarNovio) progressBarNovio.style.width = pct + '%';
+          if (curTimeNovio) curTimeNovio.textContent = formatTime(novioAudio.currentTime);
+          if (durNovio) durNovio.textContent = formatTime(novioAudio.duration);
+        }
+      });
+      novioAudio.addEventListener('loadedmetadata', () => {
+        if (durNovio && novioAudio.duration) durNovio.textContent = formatTime(novioAudio.duration);
+      });
+      novioAudio.addEventListener('play',  () => updatePlayerUI());
+      novioAudio.addEventListener('pause', () => updatePlayerUI());
+    }
+
+    /* ── Control de Apertura de Sobre ── */
+    let isEnvelopeOpen = false;
+
+    function openEnvelope() {
+      if (isEnvelopeOpen) return;
+      isEnvelopeOpen = true;
+
+      const wrapper = document.getElementById('envelopeWrapper');
+      const stage = document.getElementById('envelopeStage');
+      const mainContent = document.getElementById('mainContent');
+
+      wrapper.classList.add('opening');
+
+      // Iniciar la música de la novia ('musica de la novia.mp3') al abrir el sobre
+      playCurrentMusic();
+
+      setTimeout(() => {
+        stage.classList.add('hidden');
+        mainContent.classList.add('revealed');
+
+        const card = document.getElementById('card');
+        card.style.animation = 'none';
+        void card.offsetWidth;
+        card.style.animation = 'face-in 0.8s cubic-bezier(0.34,1.56,0.64,1) both';
+      }, 1250);
+    }
+
+    function closeEnvelope() {
+      const wrapper = document.getElementById('envelopeWrapper');
+      const stage = document.getElementById('envelopeStage');
+      const mainContent = document.getElementById('mainContent');
+
+      mainContent.classList.remove('revealed');
+      stage.classList.remove('hidden');
+
+      setTimeout(() => {
+        wrapper.classList.remove('opening');
+        isEnvelopeOpen = false;
+      }, 400);
+    }
+
+    /* ── Toggle entre De la Novia y Del Novio con cambio de música ── */
+    function showFace(who) {
+      const wasMusicPlaying = isMusicActive;
+      currentSide = who;
+
+      const novia = document.getElementById('faceNovia');
+      const novio = document.getElementById('faceNovio');
+      const btnN  = document.getElementById('btnNovia');
+      const btnB  = document.getElementById('btnNovio');
+      const card  = document.getElementById('card');
+
+      novia.classList.remove('visible');
+      novio.classList.remove('visible');
+      btnN.className = 'toggle-btn';
+      btnB.className = 'toggle-btn';
+
+      card.style.animation = 'none';
+      void card.offsetWidth;
+      card.style.animation = 'face-in 0.7s cubic-bezier(0.34,1.56,0.64,1) both';
+
+      const noviaF = document.querySelectorAll('.novia-float');
+      const novioF = document.querySelectorAll('.novio-float');
+
+      if (who === 'novia') {
+        novia.classList.add('visible');
+        btnN.classList.add('active-novia');
+        document.body.className = 'novia';
+        noviaF.forEach(el => el.style.display = '');
+        novioF.forEach(el => el.style.display = 'none');
+      } else {
+        novio.classList.add('visible');
+        btnB.classList.add('active-novio');
+        document.body.className = 'novio';
+        noviaF.forEach(el => el.style.display = 'none');
+        novioF.forEach(el => el.style.display = '');
+      }
+
+      // Si la música estaba sonando, cambiar a la canción del lado activo
+      if (wasMusicPlaying) {
+        playCurrentMusic();
+      } else {
+        updatePlayerUI();
+      }
+    }
+
+    /* ── Días juntos como novios ── */
+    (function() {
+      const start = new Date('2026-09-09T00:00:00');
+      const diff  = Math.max(0, Math.floor((new Date() - start) / 86400000));
+      const counterEl = document.getElementById('dayCounter');
+      if (counterEl) counterEl.textContent = diff;
+    })();
+
+    /* ── Tilt 3D suave para la carta ── */
+    const card = document.getElementById('card');
+    document.addEventListener('mousemove', e => {
+      if (!isEnvelopeOpen) return;
+      const dx = (e.clientX - window.innerWidth  / 2) / (window.innerWidth  / 2);
+      const dy = (e.clientY - window.innerHeight / 2) / (window.innerHeight / 2);
+      card.style.transition = 'transform 0.12s ease-out';
+      card.style.transform  = `rotateY(${dx * 8}deg) rotateX(${-dy * 6}deg) scale(1.01)`;
+    });
+
+    document.addEventListener('mouseleave', () => {
+      card.style.transition = 'transform 0.8s ease';
+      card.style.transform  = 'none';
+    });
+
+    /* ── Partículas en Canvas ── */
+    const canvas = document.getElementById('particles');
+    const ctx    = canvas.getContext('2d');
+    let W, H;
+    const pts = [];
+    const NC = ['#a855f7','#fbbf24','#c084fc','#fde68a','#7c3aed','#ec4899'];
+    const BC = ['#fbbf24','#fef08a','#94a3b8','#cbd5e1','#f59e0b'];
+
+    function resize(){ W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+    window.addEventListener('resize', resize); resize();
+
+    function newPt(){
+      return {
+        x: Math.random() * W,
+        y: H + 8,
+        r: Math.random() * 2 + 0.5,
+        speed: Math.random() * 0.9 + 0.3,
+        drift: (Math.random() - 0.5) * 0.5,
+        op: Math.random() * 0.4 + 0.1
+      };
+    }
+
+    function draw(){
+      ctx.clearRect(0, 0, W, H);
+      const C = document.body.classList.contains('novia') ? NC : BC;
+      if (pts.length < 55) pts.push(newPt());
+      pts.forEach((p, i) => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = C[i % C.length];
+        ctx.globalAlpha = p.op;
+        ctx.fill();
+        p.y -= p.speed;
+        p.x += p.drift;
+        if (p.y < -8) pts.splice(i, 1);
+      });
+      ctx.globalAlpha = 1;
+      requestAnimationFrame(draw);
+    }
+    draw();
+  </script>
+</body>
+</html>
